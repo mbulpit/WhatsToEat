@@ -1,7 +1,7 @@
 <div id="header">
     <nav class="navbar" data-bs-theme="dark">
         <a routerLink=""><h1 id="title">What's To Eat</h1></a>
-        <p *ngIf="userInfo.name">Welcome Back, {{userInfo.name}} <a routerLink="" (click)="signOut()">(sign out)</a></p>
+        <p *ngIf="userInfo.name"><span class="header-intro">Welcome Back, </span>{{userInfo.name}} <a routerLink="" (click)="signOut()">(sign out)</a></p>
         <a *ngIf="!userInfo.name" routerLink="login">Sign in</a>
     </nav>
     <div class="container">
