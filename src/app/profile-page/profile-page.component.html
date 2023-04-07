@@ -1,0 +1,54 @@
+<div class="container profile">
+    <h2 class="text-center">Profile</h2>
+    <div class="row">
+        <div class="col-4">
+            <h3>Name: <i class="bi bi-pencil-square" (click)="showEditor('Name')"></i></h3>
+            <p>{{userInfo.name}}</p>
+            <h3>Email: <i class="bi bi-pencil-square" (click)="showEditor('Email')"></i></h3>
+            <p>{{userInfo.email}}</p>
+            <h3>Password: <i class="bi bi-pencil-square" (click)="showEditor('Password')"></i></h3>
+            <p>********</p>
+        </div>
+        <div class="col-4 align-self-end">
+            <div [ngClass]="editProfile['Name'] ? '' : 'hide'">
+                <h3>Name:</h3>
+                <input id="name" [(ngModel)]="userInfo.name" placeholder="name" name="name" required>
+                <button type="button" class="btn btn-success btn-sm" (click)="saveProfile();"><i class="bi bi-check-lg"></i></button>
+                <button type="button" class="btn btn-secondary btn-sm" (click)="onCancel();"><i class="bi bi-x"></i></button>
+            </div>
+            <div [ngClass]="editProfile['Email'] ? '' : 'hide'">
+                <h3>Email:</h3>
+                <input id="email" [(ngModel)]="userInfo.email" placeholder="email" name="email" required>
+                <button type="button" class="btn btn-success btn-sm" (click)="updateEmailAddress();"><i class="bi bi-check-lg"></i></button>
+                <button type="button" class="btn btn-secondary btn-sm" (click)="onCancel();"><i class="bi bi-x"></i></button>
+            </div>
+            <div [ngClass]="editProfile['Password'] ? '' : 'hide'">
+                <h3>Password:</h3>
+                <input type="password" id="password" [(ngModel)]="p1" placeholder="password"><br>
+            </div>
+        </div>
+        <div class="col-4 align-self-end">
+
+            <div class="error-box" *ngIf="editProfile['Password']">
+                <p *ngIf="p1 !== p2">Passwords must match</p>
+                <p *ngIf="p1.length < 4">Password must be at least 4 characters</p>
+            </div>
+
+            <div class="error-box">
+                <p>{{emailError}}</p>
+            </div>
+            
+            <div [ngClass]="editProfile['Password'] ? '' : 'hide'">
+                <h3>Confirm Password:</h3>
+                <input type="password" id="confirm-password" [(ngModel)]="p2" placeholder="confirm password">
+                <button type="button" class="btn btn-success btn-sm" [disabled]="p1 !== p2 || p1.length < 4" (click)="userInfo.password = p1;saveProfile();"><i class="bi bi-check-lg"></i></button>
+                <button type="button" class="btn btn-secondary btn-sm" (click)="onCancel();"><i class="bi bi-x"></i></button>
+            </div>
+        </div>
+    </div>
+    <div class="row align-items-end">
+        <div class="col-4">
+            <button class="btn btn-danger profile-btn" (click)="deleteAccount();">Delete Account</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,8 @@
+<div class="content-outer-container">
+    <div class="content-inner-container">
+        <app-header></app-header>
+        <router-outlet></router-outlet>
+        <app-confirmation-modal *ngIf="showConfirmationModal"></app-confirmation-modal>
+    </div>
+</div>
+<app-footer></app-footer>

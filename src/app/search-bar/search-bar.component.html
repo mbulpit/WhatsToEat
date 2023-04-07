@@ -1,0 +1,21 @@
+<div class="container-fluid search-box">
+    <form action="" role="search" [formGroup]="search" (ngSubmit)="onSubmit()">
+        <div class="row">
+            <div class="col-sm-8 search-input">
+                <input class="form-control me-2" type="search" formControlName="searchTerm" placeholder="Search {{ search.value.searchType | titlecase }}" aria-label="Search">
+            </div>
+            <div class="col-sm-4 search-button">
+                <button type="submit" class="btn btn-secondary"><i class="bi bi-search"></i></button>
+            </div>
+        </div>
+        <div class="row search-radios">
+            <div class="col-sm-3" *ngFor="let type of searchTypes">
+                    <input class="form-check-input" type="radio" formControlName="searchType" id="{{type}}" value="{{type}}">
+                    <label class="form-check-label" for="{{type}}">{{type | titlecase}}</label>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+

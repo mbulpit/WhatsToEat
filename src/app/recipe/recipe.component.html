@@ -1,0 +1,25 @@
+<button type="button" (click)="goBack()"><i class="bi bi-arrow-left"></i></button>
+<div class="container px-4 py-5 my-5 text-center" *ngIf="recipe.title">
+    <h1 class="recipe-headings title">{{recipe.title}}</h1>
+        <button class="fav-btn"
+        [ngClass]="favoriteRecipe ? 'fav-btn-clicked' : 'fav-btn' "
+        (click)="favClicked()">
+                <i class="bi bi-heart"> favorite</i>
+        </button>
+    
+    <p class="recipe-info" [innerHTML]="recipe.summary"></p>
+    <img src="{{recipe.image}}" alt="recipe.title">
+</div>
+<div class="container" *ngIf="recipe">
+    <h2 class="recipe-headings">Ingredients</h2>
+    <ul>
+        <li class="recipe-info" *ngFor="let ingredient of recipe.extendedIngredients">{{ingredient.original}}</li>
+    </ul>
+    <h2 class="recipe-headings">Instructions</h2>
+    <ng-container *ngFor="let component of recipe.analyzedInstructions">
+        <h4 class="recipe-headings" *ngIf="component.name">{{component.name}}</h4>
+        <ol>
+            <li class="recipe-info" *ngFor="let step of component.steps">{{step.step}}</li>
+        </ol>
+    </ng-container>
+</div>

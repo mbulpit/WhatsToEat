@@ -1,0 +1,43 @@
+<div class="container user-form">
+    <h2>Sign Up</h2>
+    <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" formControlName="name" [ngClass]="n.errors ? 'bad' : 'good'">
+        </div>
+        <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" class="form-control" id="email" formControlName="email" [ngClass]="e.errors ? 'bad' : 'good'">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" formControlName="password" [ngClass]="p1.errors ? 'bad' : 'good'">
+        </div>
+        <div class="form-group">
+            <label for="confirmedPassword">Confirm Password</label>
+            <input type="password" class="form-control" id="confirmedPassword" formControlName="confirmedPassword" [ngClass]="p2.errors ? 'bad' : 'good'">
+        </div>
+        <button class="btn btn-primary" type="submit" [disabled]="!signUpForm.valid">Submit</button>
+        <p>Already have an account? <a routerLink="/login">Sign in!</a></p>
+    </form>
+
+    <div class="error-box">
+        <ng-container *ngIf="n.errors && (n.touched || n.dirty)">
+            <p *ngIf="n.errors['required']">Name is required.</p>
+            <p *ngIf="n.errors['minlength']">Name must be 3 or more characters</p>
+        </ng-container>
+        <ng-container *ngIf="e.errors && (e.touched || e.dirty)">
+            <p *ngIf="e.errors['required']">Email is required.</p>
+            <p *ngIf="e.errors['email']">Email must be a valid email address.</p>
+        </ng-container>
+        <ng-container *ngIf="p1.errors && (p1.touched || p1.dirty)">
+            <p *ngIf="p1.errors['required']">Password is required.</p>
+            <p *ngIf="p1.errors['minlength']">Password must be at least 4 characters.</p>
+        </ng-container>
+        <ng-container *ngIf="p2.errors && (p2.touched || p2.dirty)">
+            <p *ngIf="p2.errors['required']">Please confirm password.</p>
+            <p *ngIf="p2.errors['passwordMatch']">Passwords must match.</p>
+        </ng-container>
+        <p *ngIf="error">{{error}}</p>
+    </div>
+</div>

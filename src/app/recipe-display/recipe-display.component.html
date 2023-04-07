@@ -1,0 +1,12 @@
+<div class="container" *ngIf="recipesToDisplay">
+    <h2 class="results-title">{{resultsTitle}}</h2>
+    <div class="row row-cols-auto">
+        <div class="col recipe-card" *ngFor="let recipe of recipesToDisplay | paginate: { itemsPerPage: 12, currentPage: p}">
+            <a routerLink="/recipe/{{recipe.id}}">
+                <img src="{{recipe.image ? recipe.image : noImageUrl}}" alt="{{recipe.title}}">
+                <p>{{recipe.title}}</p>
+            </a>
+        </div>
+    </div>
+    <pagination-controls (pageChange)="onPageChange($event)"></pagination-controls>
+</div>
