@@ -395,6 +395,10 @@ body {
     }
   }
 
+  .recipe-image {
+    max-width: 90%;
+  }
+
   .container.profile {
     padding: 20px;
 }
